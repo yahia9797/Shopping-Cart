@@ -1,0 +1,56 @@
+
+{{#each Products}}
+
+<div class="row">
+  {{#each this}}
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="text-center">
+        <img src={{this.imagepath}} class="card-img-top" alt="...">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{this.productName}}</h5>
+        <p class="card-text">
+          Camera Resolution: {{this.information.CameraResolution}}<br>
+          Ram: {{this.information.Ram}}<br>
+          Networking topology: {{this.information.Networkingtopology}}<br>
+        </p>
+        <div class="price float-left">{{this.price}}L.E</div>
+        {{#if ../../checkuser}}
+        <a href="/addTocart/{{this._id}}/{{this.price}}/{{this.productName}}"
+          class="btn btn-success float-right">Buy</a>
+
+        {{else}}
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModalCenter">
+  Buy
+</button>
+
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Not signed in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+you must <a href="/users/signin" >sign in</a> or <a href="/users/signup" >sign up</a> if you don't have an account </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="/users/signin"class="btn btn-primary">sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
